@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lone Star Karting — fictional Austin kart-racing business concept for a school project.">
+  <title>Lone Star Karting | Austin, Texas</title>
+  <style>
+    :root {
+      --bg: #0a0b0e;
+      --panel: #14161b;
+      --panel-2: #1b1e24;
+      --red: #ef233c;
+      --red-dark: #b91025;
+      --white: #f6f7f9;
+      --muted: #aeb3bd;
+      --line: rgba(255,255,255,.12);
+      --max: 1160px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--white);
+      font-family: Inter, "Segoe UI", Arial, sans-serif; line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .top-note {
+      background: var(--red); color: white; text-align: center; padding: 7px 16px;
+      font-size: .76rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+    }
+    header {
+      position: sticky; top: 0; z-index: 10; background: rgba(10,11,14,.94);
+      backdrop-filter: blur(14px); border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      max-width: var(--max); margin: auto; padding: 17px 24px; display: flex;
+      align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 950; letter-spacing: .035em; }
+    .brand-mark {
+      display: grid; place-items: center; width: 42px; height: 42px; background: var(--red);
+      clip-path: polygon(0 0,100% 0,100% 72%,72% 100%,0 100%); font-size: 1.1rem;
+    }
+    .brand small { display: block; color: var(--muted); font-size: .65rem; letter-spacing: .23em; font-weight: 700; }
+    nav { display: flex; align-items: center; gap: 26px; font-size: .88rem; font-weight: 700; }
+    nav a:hover { color: var(--red); }
+    .nav-cta, .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 18px; background: var(--red); color: white; font-weight: 900;
+      text-transform: uppercase; letter-spacing: .06em; font-size: .8rem; border: 0;
+      cursor: pointer; transition: transform .2s, background .2s;
+    }
+    .nav-cta:hover, .button:hover { background: var(--red-dark); transform: translateY(-2px); }
+    .button.secondary { background: transparent; border: 1px solid rgba(255,255,255,.35); }
+    .button.secondary:hover { background: white; color: #111; }
+    .hero {
+      min-height: 620px; position: relative; display: flex; align-items: center; overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(5,6,8,.96) 0%, rgba(5,6,8,.82) 42%, rgba(5,6,8,.18) 100%),
+        linear-gradient(0deg, rgba(5,6,8,.8), transparent 45%),
+        url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=2000&q=85') center 55%/cover;
+    }
+    .hero::after {
+      content: ""; position: absolute; right: -70px; top: 15%; width: 40%; height: 8px;
+      background: var(--red); transform: rotate(-35deg); opacity: .9;
+      box-shadow: 0 22px 0 rgba(239,35,60,.25), 0 44px 0 rgba(239,35,60,.12);
+    }
+    .hero-inner { max-width: var(--max); width: 100%; margin: auto; padding: 90px 24px 110px; position: relative; z-index: 1; }
+    .eyebrow { color: var(--red); text-transform: uppercase; letter-spacing: .22em; font-size: .76rem; font-weight: 900; }
+    h1 { font-size: clamp(3.1rem, 8vw, 6.5rem); line-height: .92; letter-spacing: -.065em; margin: 20px 0; max-width: 780px; text-transform: uppercase; }
+    h1 span { color: var(--red); }
+    .hero p { color: #d0d3d9; font-size: 1.08rem; max-width: 520px; margin: 0 0 30px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-stats { display: flex; gap: 42px; margin-top: 58px; flex-wrap: wrap; }
+    .stat strong { display: block; font-size: 1.5rem; letter-spacing: -.04em; }
+    .stat span { color: var(--muted); text-transform: uppercase; letter-spacing: .12em; font-size: .67rem; font-weight: 800; }
+    .section { max-width: var(--max); margin: auto; padding: 88px 24px; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 34px; }
+    h2 { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.02; letter-spacing: -.045em; text-transform: uppercase; margin: 8px 0 0; }
+    .section-head p { max-width: 420px; color: var(--muted); margin: 0; }
+    .features { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .feature { background: var(--panel); border: 1px solid var(--line); padding: 28px; min-height: 220px; position: relative; overflow: hidden; }
+    .feature::after { content: ""; width: 70px; height: 4px; background: var(--red); position: absolute; left: 28px; bottom: 0; }
+    .feature .number { color: var(--red); font-size: .8rem; font-weight: 900; letter-spacing: .14em; }
+    .feature h3 { margin: 20px 0 8px; text-transform: uppercase; font-size: 1.2rem; }
+    .feature p { margin: 0; color: var(--muted); font-size: .94rem; }
+    .track-band {
+      background: linear-gradient(110deg, #181a20, #101115); border-block: 1px solid var(--line);
+    }
+    .track-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 44px; align-items: center; }
+    .track-image {
+      min-height: 360px; background:
+        linear-gradient(0deg, rgba(0,0,0,.25), transparent),
+        url('https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1200&q=85') center/cover;
+      border: 1px solid var(--line); position: relative;
+    }
+    .track-image::before { content: "LSK / TRACK CONCEPT"; position: absolute; left: 18px; bottom: 18px; background: var(--red); padding: 8px 12px; font-size: .7rem; font-weight: 900; letter-spacing: .1em; }
+    .check-list { list-style: none; padding: 0; margin: 24px 0 30px; }
+    .check-list li { border-bottom: 1px solid var(--line); padding: 12px 0; color: #d6d8de; }
+    .check-list li::before { content: "↗"; color: var(--red); font-weight: 900; margin-right: 12px; }
+    .pricing { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .price-card { background: var(--panel); border: 1px solid var(--line); padding: 28px; }
+    .price-card.featured { border-color: var(--red); box-shadow: inset 0 3px 0 var(--red); }
+    .price-card .tag { color: var(--red); font-size: .7rem; text-transform: uppercase; font-weight: 900; letter-spacing: .14em; }
+    .price-card h3 { text-transform: uppercase; margin: 12px 0 4px; }
+    .price { font-size: 2.7rem; font-weight: 950; letter-spacing: -.06em; }
+    .price small { color: var(--muted); font-size: .82rem; letter-spacing: 0; font-weight: 600; }
+    .price-card p { color: var(--muted); font-size: .92rem; min-height: 52px; }
+    .price-card .button { width: 100%; margin-top: 12px; }
+    .cta {
+      max-width: var(--max); margin: 0 auto 84px; padding: 46px;
+      background: var(--red); position: relative; overflow: hidden;
+    }
+    .cta::after { content: "LSK"; position: absolute; right: -5px; bottom: -85px; font-size: 15rem; line-height: 1; font-weight: 1000; color: rgba(0,0,0,.12); }
+    .cta-inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .cta h2 { max-width: 600px; }
+    .cta p { margin-bottom: 0; color: rgba(255,255,255,.85); }
+    .cta .button { background: #101115; white-space: nowrap; }
+    footer { border-top: 1px solid var(--line); background: #07080a; }
+    .footer-inner { max-width: var(--max); margin: auto; padding: 36px 24px; display: flex; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+    .footer-inner p { color: var(--muted); font-size: .82rem; max-width: 520px; }
+    .footer-links { display: flex; gap: 18px; color: #d2d4d9; font-size: .85rem; }
+    .placeholder { color: #ffd9de; background: rgba(239,35,60,.12); border: 1px dashed rgba(239,35,60,.7); padding: 10px 12px; font-size: .78rem; }
+    .fineprint { text-align: center; color: #8f949e; padding: 14px 20px; font-size: .72rem; border-top: 1px solid var(--line); }
+    @media (max-width: 760px) {
+      nav { display: none; }
+      .hero { min-height: 570px; }
+      .hero-inner { padding-top: 72px; }
+      .section { padding-block: 62px; }
+      .section-head, .cta-inner { align-items: start; flex-direction: column; }
+      .features, .pricing, .track-layout { grid-template-columns: 1fr; }
+      .track-image { min-height: 260px; }
+      .cta { margin: 0 16px 60px; padding: 30px 24px; }
+      .hero-stats { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-note">Fictional business concept · School project · Not a real karting venue</div>
+  <header>
+    <div class="nav">
+      <a class="brand" href="#home" aria-label="Lone Star Karting home">
+        <span class="brand-mark">★</span>
+        <span>LONE STAR KARTING<small>AUSTIN, TEXAS</small></span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#experience">Experience</a>
+        <a href="#track">The Track</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="nav-cta" href="#pricing">Find Your Race ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="eyebrow">Austin's fictional karting development team</div>
+        <h1>Find your<br><span>racing line.</span></h1>
+        <p>Take the next step in your racing journey. Lone Star Karting is a fictional driver-development team concept built around learning racecraft, representing the team, and working toward your next grid.</p>
+        <div class="hero-actions">
+          <a class="button" href="#pricing">Join the Team ↗</a>
+          <a class="button secondary" href="#experience">Meet the Team</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><strong>01</strong><span>Race your way</span></div>
+          <div class="stat"><strong>02</strong><span>Challenge friends</span></div>
+          <div class="stat"><strong>03</strong><span>Chase the podium</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="section-head">
+        <div><div class="eyebrow">Built for the thrill</div><h2>Built for<br>the next grid.</h2></div>
+        <p>Inspired by the structure and ambition of junior motorsport teams, this concept focuses on driver progression, teamwork, and race-weekend preparation.</p>
+      </div>
+      <div class="features">
+        <article class="feature"><div class="number">01 / ARRIVE</div><h3>Driver Development</h3><p>Build fundamentals through a fictional program focused on consistency, racecraft, and confidence.</p></article>
+        <article class="feature"><div class="number">02 / DRIVE</div><h3>Represent the Team</h3><p>Imagine joining a team environment with shared goals, team colors, and a commitment to improvement.</p></article>
+        <article class="feature"><div class="number">03 / CELEBRATE</div><h3>Race-Day Mindset</h3><p>Prepare for events with a focus on sportsmanship, preparation, and learning from every race.</p></article>
+      </div>
+    </section>
+
+    <div class="track-band" id="track">
+      <section class="section track-layout">
+        <div class="track-image" role="img" aria-label="Motorsport-inspired track photography"></div>
+        <div>
+          <div class="eyebrow">The driver pathway</div>
+          <h2>Every lap<br>moves you forward.</h2>
+          <p style="color:var(--muted)">The team and its programs are fictional. This section outlines an imagined pathway from learning the basics to developing racecraft and preparing for competitive karting opportunities.</p>
+          <ul class="check-list">
+            <li>Foundations and racecraft</li>
+            <li>Teamwork and driver standards</li>
+            <li>Progress tracking and goal setting</li>
+            <li>Safety-first approach to motorsport</li>
+          </ul>
+          <a class="button secondary" href="#contact">Explore Driver Pathway ↗</a>
+        </div>
+      </section>
+    </div>
+
+    <section class="section" id="pricing">
+      <div class="section-head">
+        <div><div class="eyebrow">Driver pathway concept</div><h2>Find your<br>place on the grid.</h2></div>
+        <p>These sample program tiers are fictional and are not real offers, tryouts, or bookable sessions.</p>
+      </div>
+      <div class="pricing">
+        <article class="price-card">
+          <div class="tag">First lap</div><h3>Development Driver</h3>
+          <div class="price">LEVEL 01 <small>/ concept</small></div>
+          <p>Build core driving habits, learn race terminology, and set development goals.</p>
+          <a class="button secondary" href="#contact">Learn more</a>
+        </article>
+        <article class="price-card featured">
+          <div class="tag">Fan favorite · concept</div><h3>Junior Team Pathway</h3>
+          <div class="price">LEVEL 02 <small>/ concept</small></div>
+          <p>A fictional pathway emphasizing consistency, teamwork, and structured practice.</p>
+          <a class="button" href="#contact">Learn more ↗</a>
+        </article>
+        <article class="price-card">
+          <div class="tag">Bring the crew</div><h3>Race Team Candidate</h3>
+          <div class="price">LEVEL 03 <small>/ concept</small></div>
+          <p>A fictional candidate pathway focused on commitment, sportsmanship, and race preparation.</p>
+          <a class="button secondary" href="#contact">Learn more</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="cta-inner">
+        <div>
+          <div class="eyebrow" style="color:#fff">Your next racing story starts here</div>
+          <h2>Ready to join the grid?</h2>
+          <p>Interested in the fictional team concept? Use the sample contact details below.</p>
+        </div>
+        <a class="button" href="mailto:hello@example.com">Express Interest ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <a class="brand" href="#home"><span class="brand-mark">★</span><span>LONE STAR KARTING<small>AUSTIN, TEXAS</small></span></a>
+        <p>Fictional karting business concept created for a school project. No real venue, bookings, or services are represented.</p>
+      </div>
+      <div>
+        <strong>Contact concept</strong>
+        <p class="placeholder">Address: [FICTIONAL AUSTIN ADDRESS — PLACEHOLDER]<br>
+        Phone: (469) 986-7507<br>
+        Email: lonestarracing.austin@gmail.com</p>
+      </div>
+    </div>
+    <div class="fineprint">© 2026 Lone Star Karting · Fictional school-project concept · Example prices and details only</div>
+  </footer>
+</body>
+</html>
